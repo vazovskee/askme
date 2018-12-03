@@ -2,6 +2,14 @@
     padding: 10px 0;
 }
 
+.questions-amount {
+    font-size: 18px;
+    font-weight: bolder;
+    height: 20px;
+    line-height: 30px;
+    text-align: center;
+}
+
 .question {
     background: white;
 }
