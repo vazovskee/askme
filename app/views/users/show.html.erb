@@ -37,9 +37,7 @@
 
 <div class="column-3-4">
   <div class="user-questions buffer-both">
-    <div class="questions-amount">
-      <%= questions_amount(@questions) %>
-    </div>
+    <%= render partial: 'questions/questions_amount' %>
     <div class="questions-list">
       <% @questions.each do |question| %>
         <%= render partial: 'questions/question', object: question %>
