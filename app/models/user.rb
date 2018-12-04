@@ -3,15 +3,15 @@ require 'openssl'
 class User < ActiveRecord::Base
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
-  EMAIL_REGEXP = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i.freeze
-  USERNAME_REGEXP = /\A[a-zA-Z0-9_]+\Z/.freeze
+  EMAIL_REGEXP = /\A[^@]+@[^@]+\Z/.freeze
+  USERNAME_REGEXP = /\A[\w]+\Z/.freeze
 
   has_many :questions
 
   before_validation :downcase_username
 
-  validates :email, format: { with: EMAIL_REGEXP, on: :create }
-  validates :username, format: { with: USERNAME_REGEXP, on: :create }
+  validates :email, format: { with: EMAIL_REGEXP }
+  validates :username, format: { with: USERNAME_REGEXP }
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
   validates_length_of :username, maximum: 40
