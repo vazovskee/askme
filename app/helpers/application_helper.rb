@@ -7,6 +7,10 @@ module ApplicationHelper
     end
   end
 
+  def fa_icon(icon_class)
+    content_tag 'span', '', class: "fa fa-#{icon_class}"
+  end
+
   def correct_declension(number, declensions)
     return declensions[:third_declension] if (number % 100).between?(11, 14)
 
