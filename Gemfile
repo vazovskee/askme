@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.6'
+ruby '2.4.5'
+
+gem 'rails', '4.2.8'
 gem 'uglifier'
 gem 'jquery-rails'
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.15'
 end
 
 group :development, :test do
