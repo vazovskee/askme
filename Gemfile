@@ -8,6 +8,8 @@ gem 'rails_12factor'
 
 gem 'uglifier'
 gem 'jquery-rails'
+gem 'jquery-minicolors-rails'
+gem 'coffee-rails', '~> 4.1.0'
 
 group :production do
   gem 'pg', '~> 0.15'

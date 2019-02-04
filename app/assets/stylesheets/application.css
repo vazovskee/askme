@@ -20,6 +20,7 @@
  *= require layout
  *= require users
  *= require questions
+ *= require jquery.minicolors
 
  *= require_self
  */

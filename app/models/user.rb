@@ -5,15 +5,17 @@ class User < ActiveRecord::Base
   DIGEST = OpenSSL::Digest::SHA256.new
   EMAIL_REGEXP = /\A[^@]+@[^@]+\Z/.freeze
   USERNAME_REGEXP = /\A[\w]+\Z/.freeze
+  DEFAULT_PROFILE_COLOR = '#005a55'.freeze
 
   has_many :questions
 
-  before_validation :downcase_username
+  before_validation :set_default_color
 
   validates :email, format: { with: EMAIL_REGEXP }
   validates :username, format: { with: USERNAME_REGEXP }
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
+  validates :profile_color, hex_color: true
   validates_length_of :username, maximum: 40
 
   attr_accessor :password
@@ -22,6 +24,10 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
 
   before_save :encrypt_password
+
+  def set_default_color
+    self.profile_color ||= DEFAULT_PROFILE_COLOR
+  end
 
   def encrypt_password
     if self.password.present?
